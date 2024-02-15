@@ -6,13 +6,12 @@ const port = 3000;
 
 app.use(express.json());
 
-app.post('/chatgpt', async (req: Request, res: Response) => {
+app.post('/', async (req: Request, res: Response) => {
   try {
     const { message } = req.body;
 
-    // Substitua 'SEU_API_KEY' pela chave de API do ChatGPT
-    const apiKey = process.env.OPENAI;
-    const apiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+    const apiKey = process.env.OPENAI_API_KEY;
+    const apiUrl = 'https://api.openai.com/v1/chat/completions';
 
     const response = await axios.post(apiUrl, {
       prompt: message,
